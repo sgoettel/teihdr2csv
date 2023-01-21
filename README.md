@@ -1,8 +1,4 @@
 # teihdr2csv
-A Python script for extracting data from letters in TEI 
-
-
-# letter_data.py
 
 This script extracts data from TEI-encoded letter files in XML format and writes the data to a CSV file. The script is designed to work specifically with letter files that are encoded according to the guidelines of the Text Encoding Initiative (TEI).
 
