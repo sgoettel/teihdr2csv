@@ -63,6 +63,13 @@ teihdr2csv also creates columns named `place_lat` and `place_long` for each the 
   
 To get the latitude and longitude values, the script must be located in the same directory as the "teihdr_output.csv" file:
   `$ python3 geonames_coordinates.py`
+ 
+After both scripts have been executed, the output of the csv file looks something like this:
+
+| letter_id | file_name    | sender_name                          | sender_id                      | sender_place | sender_place_id                  | sender_place_lat | sender_place_long | date_sent  | receiver_name                       | receiver_id                    | receiver_place | receiver_place_id                | receiver_place_lat | receiver_place_long | title                                                                                         | url                                  |
+|-----------|--------------|--------------------------------------|--------------------------------|--------------|----------------------------------|------------------|-------------------|------------|-------------------------------------|--------------------------------|----------------|----------------------------------|--------------------|---------------------|-----------------------------------------------------------------------------------------------|--------------------------------------|
+| 1         | H0014746.xml | Humboldt, Alexander von (1769–1859)  | http://d-nb.info/gnd/118554700 | London       | https://www.geonames.org/2643743 | 51.50853         | -0.12574          | 1817-11-11 | Kunth, Carl Sigismund (1788–1850 )  | http://d-nb.info/gnd/115674667 | Paris          | https://www.geonames.org/2988507 | 48.85341           | 2.3488              | Alexander von Humboldt an Carl Sigismund Kunth. London, 11. November                     1817 | https://edition-humboldt.de/H0014746 |
+
   
 If you should have noticed any errors or if you have any additions, comments or suggestions for improvement, please feel free to send me a message.
 
