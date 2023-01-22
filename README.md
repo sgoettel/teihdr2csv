@@ -5,6 +5,7 @@ This script extracts data about the sender and receiver from TEI-encoded letter 
 ## Usage
 
 To run the script, you need to have Python 3 installed on your machine. The directory should be named `xml_letters` and should be located in the same directory as the script. The script is using the [xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html) and [csv](https://docs.python.org/3/library/csv.html) modules which are built-in modules in Python.
+There are some TEI encoded letters in the folder `xml_letters` as examples, so you can experiment a bit with the dataset. The letters are from [edition humboldt digital](https://edition-humboldt.de/) ([you can find the whole dataset on GitHub](https://github.com/telota/edition-humboldt-digital)).
 
 `$ python3 teihdr2csv.py`
 
@@ -12,7 +13,7 @@ If you want to change the name of the output file or the path of the output file
 
 ## Input
 
-The script takes as input a directory containing TEI-encoded letter files in XML format. The directory should be named `xml_letters` and should be located in the same directory as the script. The script will iterate through all files in the directory that have the `.xml` file extension. If you want to change the name of the output file or the path of the output file, you can change it in the script.
+The script will iterate through all files in the directory `xml_letters` that have the `.xml` file extension. If you want to change the name of the output file or the path of the output file, you can change it in the script.
 
 The script extracts data from the following elements and attributes within the XML files from the sender and the receiver:
 
