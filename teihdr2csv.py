@@ -87,7 +87,7 @@ with open("teihdr_output.csv", "w") as csvfile:
                                         ".//{http://www.tei-c.org/ns/1.0}title[@n='digital']"
                                     )
                 if title is not None:
-                    data["title"] = title.text
+                    data["title"] = re.sub(r"\s+", " ", title.text)
                 else:
                     data["title"] = "n/a"
 
