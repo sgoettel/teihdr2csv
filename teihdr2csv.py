@@ -1,5 +1,6 @@
 import os
 import csv
+import re
 import xml.etree.ElementTree as ET
 
 # Define the names of the columns in the CSV file
