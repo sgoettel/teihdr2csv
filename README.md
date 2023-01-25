@@ -7,9 +7,11 @@ This script extracts data about the sender and receiver from TEI-encoded letter 
 To run the script, you need to have Python 3 installed on your machine. The directory should be named `xml_letters` and should be located in the same directory as the script. The script is using the [xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html) and [csv](https://docs.python.org/3/library/csv.html) modules which are built-in modules in Python.
 There are some TEI encoded letters in the folder `xml_letters` as examples, so you can experiment a bit with the dataset. The letters are from [edition humboldt digital](https://edition-humboldt.de/) ([you can find the whole dataset on GitHub](https://github.com/telota/edition-humboldt-digital)).
 
-`$ python3 teihdr2csv.py`
+`$ python3 teihdr2csv.py` to create a csv with all relevant data from the TEI header
 
-If you want to change the name of the output file or the path of the output file, you can change it in the script.
+`$ python3 geonames_coordinates.py` and/or `$ python3 gnd_id_coordinates.py` to add latitude and longitude of the respective locations
+
+If you want to change the name of the output file or the path of the input/output file(s), you can change it in the script.
 
 ## Input
 
@@ -67,8 +69,11 @@ This way, every time the script is run, it will add new data to the existing fil
 teihdr2csv also creates columns named `place_lat` and `place_long` for each the sender and receiver. In order to be able to use the function of extracting the coordinates as well, either the script "geonames_coordinates.py" or the script "gnd_id_coordinates.py" (or both) must be executed after creating the csv file. The scripts use the `sender_place_id` and `receiver_place_id` columns in the CSV file, which contain the place IDs in the GeoNames or GND reference system (e.g. [https://www.geonames.org/2657896](https://www.geonames.org/2657896) or [https://d-nb.info/gnd/4068038-1](https://d-nb.info/gnd/4068038-1)). It then calls the GeoNames or GND web service to retrieve the latitude and longitude coordinates for each place ID, and adds these coordinates to the `sender_place_lat` and `sender_place_long` or `receiver_place_lat` and `receiver_place_long` columns in the CSV file.
 
 To get the latitude and longitude values, the script must be located in the same directory as the "teihdr_output.csv" file:
+
   `$ python3 geonames_coordinates.py`
+  
   and/or
+  
   `$ python3 gnd_id_coordinates.py`
   
 >**Note** Both scripts fill the corresponding cell only if it is either completely empty or if it contains "n/a". Thus, neither script overwrites the other, nor any relevant content is lost.
