@@ -36,11 +36,15 @@ The script outputs a CSV file named `letters.csv` in the same directory as the s
 -   `sender_id`: The ID of the sender in a certain reference system (e.g. GND ID)
 -   `sender_place`: The name of the place the letter was sent from.
 -   `sender_place_id`: The ID of the place the letter was sent from in the form of a URL.
+-   `sender_place_lat`: currently empty, run "gnd_id_coordinates.py" and/or "geonames_coordinates.py"
+-   `sender_place_long`: currently empty, run "gnd_id_coordinates.py" and/or "geonames_coordinates.py"
 -   `date_sent`: The date the letter was sent.
 -   `receiver_name`: The name of the receiver of the letter.
 -   `receiver_id`: The ID of the receiver of the letter in the form of a URL.
 -   `receiver_place`: The name of the place the letter was sent to.
 -   `receiver_place_id`: The ID of the place the letter was sent to in the form of a URL.
+-   `receiver_place_lat`: currently empty, run "gnd_id_coordinates.py" and/or "geonames_coordinates.py"
+-   `receiver_place_long`: currently empty, run "gnd_id_coordinates.py" and/or "geonames_coordinates.py"
 -   `title`: The title of the letter
 -   `url`: The URL of the letter if it is available
 
@@ -60,12 +64,16 @@ This way, every time the script is run, it will add new data to the existing fil
  
 ## Add latitude and longitude for the place of sender/receiver
   
-teihdr2csv also creates columns named `place_lat` and `place_long` for each the sender and receiver. In order to be able to use the function of extracting the coordinates as well, the script "geonames_coordinates.py" must be executed after creating the csv file. The script currently only works with GeoNames URLs. The script uses the `sender_place_id` and `receiver_place_id` columns in the CSV file, which contain the place IDs in the GeoNames reference system (e.g. [https://www.geonames.org/2657896](https://www.geonames.org/2657896)). It then calls the GeoNames web service to retrieve the latitude and longitude coordinates for each place ID, and adds these coordinates to the `sender_place_lat` and `sender_place_long` or `receiver_place_lat` and `receiver_place_long` columns in the CSV file.
-  
+teihdr2csv also creates columns named `place_lat` and `place_long` for each the sender and receiver. In order to be able to use the function of extracting the coordinates as well, either the script "geonames_coordinates.py" or the script "gnd_id_coordinates.py" (or both) must be executed after creating the csv file. The scripts use the `sender_place_id` and `receiver_place_id` columns in the CSV file, which contain the place IDs in the GeoNames or GND reference system (e.g. [https://www.geonames.org/2657896](https://www.geonames.org/2657896) or [https://d-nb.info/gnd/4068038-1](https://d-nb.info/gnd/4068038-1)). It then calls the GeoNames or GND web service to retrieve the latitude and longitude coordinates for each place ID, and adds these coordinates to the `sender_place_lat` and `sender_place_long` or `receiver_place_lat` and `receiver_place_long` columns in the CSV file.
+
 To get the latitude and longitude values, the script must be located in the same directory as the "teihdr_output.csv" file:
   `$ python3 geonames_coordinates.py`
+  and/or
+  `$ python3 gnd_id_coordinates.py`
+  
+>**Note** Both scripts fill the corresponding cell only if it is either completely empty or if it contains "n/a". Thus, neither script overwrites the other, nor any relevant content is lost.
  
-After both scripts have been executed, the output of the csv file looks something like this:
+After both (or all three) scripts have been executed, the output of the csv file looks something like this:
 
 | letter_id | file_name    | sender_name                          | sender_id                      | sender_place | sender_place_id                  | sender_place_lat | sender_place_long | date_sent  | receiver_name                       | receiver_id                    | receiver_place | receiver_place_id                | receiver_place_lat | receiver_place_long | title                                                                                         | url                                  |
 |-----------|--------------|--------------------------------------|--------------------------------|--------------|----------------------------------|------------------|-------------------|------------|-------------------------------------|--------------------------------|----------------|----------------------------------|--------------------|---------------------|-----------------------------------------------------------------------------------------------|--------------------------------------|
