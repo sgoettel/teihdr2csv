@@ -54,7 +54,7 @@ The script outputs a CSV file named `teihdr2csv_output.csv` in the same director
 
 The script fills in the missing information with "n/a" in the CSV file if it's not able to extract certain data from the XML file.
 
-The script will overwrite the existing `letters.csv` file if it already exists in the same directory as the script. If you want the script to add new data to the existing file, you need to open the file in "append" mode instead of "write" mode. To do this, you can change this line:
+The script will overwrite the existing `teihdr2csv_output.csv` file if it already exists in the same directory as the script. If you want the script to add new data to the existing file, you need to open the file in "append" mode instead of "write" mode. To do this, you can change this line:
 
 `with open("teihdr2csv_output.csv", "w") as csvfile:` 
 
