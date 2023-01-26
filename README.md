@@ -30,7 +30,7 @@ The script then writes the extracted data to a CSV file named `teihdr_output.csv
 
 ## Output
 
-The script outputs a CSV file named `letters.csv` in the same directory as the script. The file contains a table with the following columns:
+The script outputs a CSV file named `teihdr2csv_output.csv` in the same directory as the script. The file contains a table with the following columns:
 
 -   `letter_id`: An incrementing ID number for each letter
 -   `file_name` : The name of the input file(s) from the folder "xml_letters"
@@ -56,11 +56,11 @@ The script fills in the missing information with "n/a" in the CSV file if it's n
 
 The script will overwrite the existing `letters.csv` file if it already exists in the same directory as the script. If you want the script to add new data to the existing file, you need to open the file in "append" mode instead of "write" mode. To do this, you can change this line:
 
-`with open("letters_test.csv", "w") as csvfile:` 
+`with open("teihdr2csv_output.csv", "w") as csvfile:` 
 
 to
 
-`with open("letters_test.csv", "a") as csvfile:` 
+`with open("teihdr2csv_output.csv", "a") as csvfile:` 
 
 This way, every time the script is run, it will add new data to the existing file, rather than overwriting the whole file.
  
