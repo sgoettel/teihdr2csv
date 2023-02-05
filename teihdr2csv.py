@@ -173,6 +173,8 @@ with open("teihdr_output.csv", "w") as csvfile:
                     if date_sent is None:
                         date_sent = date_element.get("notAfter")
                     if date_sent is None:
+                        date_sent = date_element.get("from")
+                    if date_sent is None:
                         date_sent = date_element.text
                     data["date_sent"] = date_sent
                 else:
