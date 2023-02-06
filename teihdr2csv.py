@@ -88,7 +88,8 @@ with open("teihdr_output.csv", "w") as csvfile:
                                         ".//{http://www.tei-c.org/ns/1.0}title[@n='digital']"
                                     )
                 if title is not None:
-                    data["title"] = re.sub(r"\s+", " ", title.text)
+                    data["title"] = re.sub(r'\s+', ' ', title.text)
+
                 else:
                     data["title"] = "n/a"
 
@@ -143,9 +144,9 @@ with open("teihdr_output.csv", "w") as csvfile:
                             ".//{http://www.tei-c.org/ns/1.0}surname"
                         )
                         if forename and surname:
-                            data["sender_name"] = f"{surname}, {forename}"
+                            data["sender_name"] = re.sub(r'\s+', ' ', f"{surname}, {forename}")
                         else:
-                            data["sender_name"] = pers_name.text
+                            data["sender_name"] = re.sub(r'\s+', ' ', pers_name.text)
                     else:
                         data["sender_name"] = "n/a"
                     data["sender_id"] = (
@@ -190,9 +191,9 @@ with open("teihdr_output.csv", "w") as csvfile:
                             ".//{http://www.tei-c.org/ns/1.0}surname"
                         )
                         if forename and surname:
-                            data["receiver_name"] = f"{surname}, {forename}"
+                            data["receiver_name"] = re.sub(r'\s+', ' ', f"{surname}, {forename}")
                         else:
-                            data["receiver_name"] = pers_name.text
+                            data["receiver_name"] = re.sub(r'\s+', ' ', pers_name.text)
                     else:
                         data["receiver_name"] = "n/a"
                     data["receiver_id"] = (
