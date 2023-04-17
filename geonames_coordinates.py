@@ -24,10 +24,13 @@ def get_coordinates(place_id):
                 return (lat, long)
             else:
                 print(f"Could not find coordinates for place ID {place_id}")
+                return (None, None)
         else:
             print(f"Error getting coordinates for place ID {place_id}")
+            return (None, None)
     except requests.exceptions.RequestException as e:
         print(f"Error getting coordinates for place ID {place_id}: {e}")
+        return (None, None)
 
 
 def main():
@@ -57,26 +60,24 @@ def main():
                 url,
             ) = row
 
-            if sender_place_id and sender_place_id.startswith(
-                "https://www.geonames.org"
-            ):
+            if sender_place_id and sender_place_id.startswith("https://www.geonames.org"):
+                sender_place_id = sender_place_id.rstrip("/")
                 place_id = sender_place_id.split("/")[-1]
                 lat, long = get_coordinates(place_id)
                 if lat is not None and long is not None:
-                    if row[6] in ("n/a", ""):
+                    if not row[6].replace(".", "").isnumeric():
                         row[6] = lat
-                    if row[7] in ("n/a", ""):
+                    if not row[7].replace(".", "").isnumeric():
                         row[7] = long
 
-            if receiver_place_id and receiver_place_id.startswith(
-                "https://www.geonames.org"
-            ):
+            if receiver_place_id and receiver_place_id.startswith("https://www.geonames.org"):
+                receiver_place_id = receiver_place_id.rstrip("/")
                 place_id = receiver_place_id.split("/")[-1]
                 lat, long = get_coordinates(place_id)
                 if lat is not None and long is not None:
-                    if row[13] in ("n/a", ""):
+                    if not row[13].replace(".", "").isnumeric():
                         row[13] = lat
-                    if row[14] in ("n/a", ""):
+                    if not row[14].replace(".", "").isnumeric():
                         row[14] = long
 
             data.append(row)
@@ -84,6 +85,7 @@ def main():
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(data)
+
 
 
 if __name__ == "__main__":
